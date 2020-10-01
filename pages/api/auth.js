@@ -4,7 +4,8 @@ import Axios from "axios"
 import qs from 'qs'
 
 export default async (req, res) => {
-    const response = await Axios.post("https://discord.com/api/v7/oauth2/token", qs.stringify({
+    // Send authentication request
+    await Axios.post("https://discord.com/api/v8/oauth2/token", qs.stringify({
         client_id: process.env.CLIENT_ID,
         client_secret: process.env.CLIENT_SECRET,
         grant_type: "authorization_code",
@@ -17,8 +18,7 @@ export default async (req, res) => {
         }
     })
 
-    console.log(response.data)
-
+    // Return
     res.statusCode = 200
     res.json({ redirect_to: "/" })
   }
